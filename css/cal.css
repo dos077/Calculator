@@ -86,6 +86,12 @@ div.display {
     line-height: 60px;
     box-shadow: inset 0 -5px 5px -3px rgba(0,0,0,0.33);
 }
+span#zero {color: #666666}
+div.display .int { }
+div.display .float { }
+div.display .dec { }
+div.display .neg { }
+div.display .spacer { width: 10px; }
 div.controlsContainer {
     height: 320px;
     width: 400px;
