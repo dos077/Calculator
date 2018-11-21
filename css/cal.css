@@ -90,7 +90,7 @@ span#zero {color: #666666}
 div.display .int { }
 div.display .float { }
 div.display .dec { }
-div.display .neg { }
+div.display .sign { width: 15px; }
 div.display .spacer { width: 10px; }
 div.controlsContainer {
     height: 320px;
@@ -119,6 +119,10 @@ div.controls .button {
     text-align: center;
     box-shadow: inset 0 5px 5px -3px rgba(255,255,255,0.33), inset 0 -3px 3px 0 rgba(0,0,0,0.16);
     cursor: pointer;
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 div.controls .button:active {
     box-shadow: inset 0 -5px 5px -3px rgba(255,255,255,0.25), inset 0 3px 3px 0 rgba(0,0,0,0.33);    
