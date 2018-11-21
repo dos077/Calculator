@@ -1,0 +1,119 @@
+body {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+    background-color: #1d1f1e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+div {	margin: 0; padding: 0; }
+div.clear { clear: both;}
+div.body {
+    width: 420px;
+    margin: 0 auto 0;
+    position: relative;
+}
+div.white {background-color: #fcf9f4; color: #1d1f1e;}
+div.black {background-color: #1d1f1e; color: #fcf9f4;}
+div.red {background-color: #f06057; color: #fcf9f4;}
+div.green {background-color: #577f65;}
+div.blue {background-color: #5794f0; color: #fcf9f4;}
+div.memory {
+    width: 420px;
+    height: 140px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 380px;
+    grid-template-rows: minmax(0, 40px);
+    justify-content: center;
+    background-color: #fcf9f4;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+div.memory .workOp {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 380px;
+    height: 40px;
+    grid-column: 1 / 2;
+    justify-content: flex-end;
+}
+div.memory span {
+    height: 40px;
+    font-size: 18px;
+    line-height: 36px;
+}
+div.memory .workOp span.num {
+    color: #666666;
+}
+div.memory .workOp span.op {
+    color: #f06057;
+    margin: 0 10px 0;
+}
+div.memory .workOp span.eq {
+    color: #5794f0;
+    margin: 0 10px 0;
+}
+div.memory .workOp span.an {
+    columns: #1d1f1e;
+}
+div.memory .workAn {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 380px;
+    grid-column: 1/2;
+    height: 40px;
+    font-size: 18px;
+    line-height: 36px;
+    color: #1d1f1e;
+}
+div.memory .old {
+    height: 0px;
+    overflow: hidden;
+}
+div.display {
+    height: 65px;
+    width: 380px;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content:  flex-end;
+    background-color: #fcf9f4;
+    margin-bottom: 20px;
+    font-size: 40px;
+    line-height: 60px;
+    box-shadow: inset 0 -5px 5px -3px rgba(0,0,0,0.33);
+}
+div.controlsContainer {
+    height: 320px;
+    width: 400px;
+    padding: 10px 10px 20px;
+    border-radius: 5px 5px 20px 20px;
+    overflow: hidden;
+    box-shadow: inset 0 5px 5px -3px rgba(0,0,0,0.33), inset 0 -3px 3px 0 rgba(0,0,0,0.16);
+}
+div.controls {
+    height: 320px;
+    width: 400px;    
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(4, 80px);
+}
+div.controls .button {
+    width: 30px;
+    height: 30px;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+    box-shadow: inset 0 5px 5px -3px rgba(255,255,255,0.33), inset 0 -3px 3px 0 rgba(0,0,0,0.16);
+    cursor: pointer;
+}
+div.controls .button:active {
+    box-shadow: inset 0 -5px 5px -3px rgba(255,255,255,0.25), inset 0 3px 3px 0 rgba(0,0,0,0.33);    
+}

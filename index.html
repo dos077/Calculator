@@ -1,23 +1,42 @@
 <html>
     <head>
-        <script src=""></script>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/cal.css">
         <title>Project: calculator</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
         <div class="body">
-            <div class="memory"></div>
-            <div class="display"></div>
-            <div class="controls green">
+            <div class="memory">
+                <div class="workOp old"><span class="num">111</span><span class="op">+</span><span class="num">222</span><span class="eq">=</span><span class="an">333</span></div>
+                
+                <div class="workOp"><span class="num">111</span><span class="op">+</span><span class="num">222</span><span class="eq">=</span><span class="an">333</span></div>
+                <div class="workOp"><span class="num">111</span><span class="op">+</span><span class="num">222</span><span class="eq">=</span><span class="an">333</span></div>
+                <div class="workOp"><span class="num">123456789.0</span><span class="op">+</span><span class="num">123456789.0</span><span class="eq">=</span><span class="an">123456789.0</span></div>
+            </div>
+            <div class="display">
+                <span>-</span>
+                <span>1</span>
+                <span>2</span>
+                ,
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>.</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>0</span>
+            </div>
+            <div class="controlsContainer green"><div class="controls">
                 <!-- Row One -->
-                <div class="button red" id="bs">Back</div>
+                <div class="button red" id="bs"><</div>
                 <div class="button white" id="7">7</div>
                 <div class="button white" id="8">8</div>
                 <div class="button white" id="9">9</div>
                 <div class="button black" id="dv">÷</div>
                 <!-- Row 2 -->
-                <div class="button black" id="mem">Mem</div>
+                <div class="button black" id="mem">M</div>
                 <div class="button white" id="4">4</div>
                 <div class="button white" id="5">5</div>
                 <div class="button white" id="6">6</div>
@@ -32,9 +51,9 @@
                 <div class="button red" id="c">C</div>
                 <div class="button white" id="0">0</div>
                 <div class="button black" id="dec">.</div>
-                <div class="button black" id="eq">=</div>
+                <div class="button blue" id="eq">=</div>
                 <div class="button black" id="ad">+</div>
-            </div>
+            </div></div>
         </div>
     </body>
 </html>
