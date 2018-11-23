@@ -19,29 +19,37 @@ div.black {background-color: #1d1f1e; color: #fcf9f4;}
 div.red {background-color: #f06057; color: #fcf9f4;}
 div.green {background-color: #577f65;}
 div.blue {background-color: #5794f0; color: #fcf9f4;}
+div.memoryContainer {
+    width: 380px;
+    height: 122px;
+    padding: 20px 20px 0;
+    background-color: #fcf9f4;
+}
 div.memory {
-    width: 420px;
-    height: 140px;
+    width: 380px;
+    height: 120px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 380px;
     grid-template-rows: minmax(0, 40px);
-    justify-content: center;
+    align-content: flex-end;
+    justify-content: flex-end;
     background-color: #fcf9f4;
     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 div.memory .workOp {
-    display: inline-flex;
-    flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: wrap;
     width: 380px;
-    height: 40px;
     grid-column: 1 / 2;
+    align-content: flex-end;
     justify-content: flex-end;
 }
 div.memory span {
     height: 40px;
     font-size: 18px;
     line-height: 36px;
+    display: inline-block;
 }
 div.memory .workOp span.num {
     color: #666666;
@@ -55,8 +63,9 @@ div.memory .workOp span.eq {
     margin: 0 10px 0;
 }
 div.memory .workOp span.an {
-    columns: #1d1f1e;
+    color: #1d1f1e;
 }
+div.memory .workOp span.lastAn { width: 0px; }
 div.memory .workAn {
     display: inline-flex;
     flex-wrap: nowrap;
@@ -73,16 +82,16 @@ div.memory .old {
     overflow: hidden;
 }
 div.display {
-    height: 65px;
+    height: 60px;
     width: 380px;
-    padding: 20px;
+    padding: 10px 20px 15px;
     border-radius: 0 0 5px 5px;
     display: inline-flex;
     flex-wrap: nowrap;
     justify-content:  flex-end;
     background-color: #fcf9f4;
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 48px;
     line-height: 60px;
     box-shadow: inset 0 -5px 5px -3px rgba(0,0,0,0.33);
 }
@@ -90,8 +99,8 @@ span#zero {color: #666666}
 div.display .int { }
 div.display .float { }
 div.display .dec { }
-div.display .sign { width: 15px; }
-div.display .spacer { width: 10px; }
+div.display .sign { width: 20px; }
+div.display .spacer { width: 15px; }
 div.controlsContainer {
     height: 320px;
     width: 400px;
