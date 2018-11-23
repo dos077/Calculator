@@ -4,13 +4,17 @@
         <script src="js/cal.js"></script>
         <title>Project: calculator</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="body">
-            <div class="memoryContainer"><div class="memory">
-                <div class="workOp old"><span class="num">111</span><span class="op">+</span><span class="num">222</span><span class="eq">=</span><span class="an">333</span></div>
-                
-            </div></div>
+            <div class="memoryContainer">
+                <div class="nav">
+                    <span id="clearMem" onclick="clearMemory()">Clear Memory</span>
+                    <span id="close" onclick="closeMemory()">Close</span>
+                </div>
+                <div class="memory"></div>
+            </div>
             <div class="display">
                 <span id="zero">0</span>
             </div>
@@ -22,7 +26,7 @@
                 <div class="button white" id="9" onclick="enterDigit(this)">9</div>
                 <div class="button black" id="dv" onclick="operate(this)">÷</div>
                 <!-- Row 2 -->
-                <div class="button black" id="mem">M</div>
+                <div class="button black" id="mem" onclick="openMemory()">M</div>
                 <div class="button white" id="4" onclick="enterDigit(this)">4</div>
                 <div class="button white" id="5" onclick="enterDigit(this)">5</div>
                 <div class="button white" id="6" onclick="enterDigit(this)">6</div>

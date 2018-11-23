@@ -240,18 +240,19 @@ function calculate() {
             var anSpan = document.createElement('span');
             anSpan.classList.add('an');
             anSpan.classList.add('lastAn');
+            var answer;
             if (op.id == 'ad') {
-                var answer = input1 + input2;
+                answer = input1 + input2;
                 anSpan.innerHTML = answer;
                 displayAnswer(answer);
             }
             if (op.id == 'sb') {
-                var answer = input1 - input2;
+                answer = input1 - input2;
                 anSpan.innerHTML = answer;
                 displayAnswer(answer);
             }
             if(op.id == 'ml') {
-                var answer = input1 * input2;
+                answer = input1 * input2;
                 anSpan.innerHTML = answer;
                 displayAnswer(answer);
             }
@@ -263,11 +264,12 @@ function calculate() {
                     displayError('Indeterminate');
                 }
                 else {
-                    var answer = input1 / input2;
+                    answer = input1 / input2;
                     anSpan.innerHTML = answer;
                     displayAnswer(answer);
                 }
             }
+            anSpan.setAttribute('onclick', 'recallMemory(this)');
             currentOp.appendChild(num2Span);
             currentOp.appendChild(eqSpan);
             currentOp.appendChild(anSpan);
@@ -281,4 +283,21 @@ function checkDisplay(source) {
         display = null;
     }
     return display;
+}
+function openMemory() {
+    displayClear();
+    var memory = document.querySelector('.memoryContainer');
+    memory.classList.add('open');
+}
+function closeMemory() {
+    var memory = document.querySelector('.memoryContainer');
+    memory.classList.remove('open');
+}
+function clearMemory() {
+    var memory = document.querySelector('.memory');
+    memory.innerHTML = '';
+}
+function recallMemory(answer) {
+    displayAnswer(answer.textContent);
+    closeMemory();
 }
