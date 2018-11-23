@@ -298,6 +298,11 @@ function clearMemory() {
     memory.innerHTML = '';
 }
 function recallMemory(answer) {
+    var lastAnswer = document.querySelector('.lastAn');
+    if(lastAnswer) {
+        lastAnswer.classList.remove('lastAn');
+    }
+
     displayAnswer(answer.textContent);
     closeMemory();
 }
