@@ -146,7 +146,7 @@ function operate(e) {
     if (currentOp) {
         if(currentOp.querySelector('.op')) {
             if(calculate()) {
-                operate(e);
+                e.click();
             } else {
                 return false;
             }
@@ -306,3 +306,24 @@ function recallMemory(answer) {
     displayAnswer(answer.textContent);
     closeMemory();
 }
+
+document.addEventListener('keydown', function(e){
+    var key = e.key;
+    if (e.which == 13) { document.getElementById('eq').click() }
+    else if (e.which == 8) { document.getElementById('bs').click(); }
+    else if (Number(key) % 1 === 0) {
+        document.getElementById(key).click();
+    }
+    else {
+        var button;
+        if (key == '+') { button = 'ad'; }
+        if (key == '-') { button = 'sb'; }
+        if (key == '*') { button = 'ml'; }
+        if (key == '/') { button = 'dv'; }
+        if (key == '=') { button = 'eq'; }
+        if (key == 'c') { button = 'c'; }
+        if (key == 'm') { button = 'mem'; }
+        if (key == '.') { button = 'dec'; }
+        document.getElementById(button).click();
+    }
+})
