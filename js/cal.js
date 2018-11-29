@@ -141,7 +141,17 @@ class Button {
     }
 }
 
-function pressButton(id) { setTimeout( function(){document.getElementById(id).classList.add('active');}, 100 ); }
+function pressButton(name) {
+    var button = document.getElementsByName(name)[0];
+    if(button.classList.contains('active')) {
+        button.classList.remove('active');
+        setTimeout( function(){button.classList.add('active') },100);
+        setTimeout( function(){button.classList.remove('active') },150);
+    } else {
+        button.classList.add('active');
+        setTimeout( function(){button.classList.remove('active') },150);
+    }
+}
 
 function spaceDisplay() {
     var display = new Display();
@@ -166,6 +176,7 @@ function enterDigit(e) {
     var display = new Display();
     var status = display.read();
     var digit = e.id;
+    var success = false;
     if(!status.error) {
         if(status.zero && e!=0 || status.answer) {
             display.element.innerHTML = '';
@@ -174,56 +185,70 @@ function enterDigit(e) {
         if( status.length < displayLimit && ( e!=0 || status.length>0 ) ) {
             display.add(digit);
             spaceDisplay();
+            success = true;
         }
     }
+    if(success) { pressButton(digit); }
 }
 
 function enterDec() {
     var display = new Display();
     var status = display.read();
+    var success = false;
     if(!status.error && !status.float) {
         if(status.zero) {
             display.element.innerHTML = '';
             display.add('0');
         }
         display.enterFloat();
+        success = true;
     }
+    if(success) { pressButton('dec'); }
 }
 
 function enterSign() {
     var display = new Display();
     var status = display.read();
+    var success = false;
     if (!status.error && !status.answer && !status.zero) {
         display.changeSign();
+        success = true;
     }
+    if(success) { pressButton('sign'); }
 }
 
 function enterClear() {
     var display = new Display();
     var status = display.read();
+    var success = false;
     if(!status.zero){ 
         display.clear();
         if(status.answer || status.error) {
             new Memory().update();
         }
+        success = true;
     }
     else {
         var current = new CurrentMemory();
-        if( current.read() ) { current.remove(); }
+        if( current.read() ) { current.remove(); success = true; }
     }
+    if(success) { pressButton('c'); }
 }
 
 function enterBs() {
     var display = new Display();
     var status = display.read();
+    var success = false;
     if(!status.error) {
-        if(status.length > 1) { display.back(); }
+        if(status.length > 1) { display.back(); success = true; }
         else { display.clear(); }
     }
+    if(success) { pressButton('bs'); }
 }
 function operate(e) {
     var display = new Display();
     var status = display.read();
+    var success = false;
     if(!status.error && !status.zero) {
         var currentOp = new CurrentMemory();
         if(currentOp.read()) {
@@ -232,13 +257,17 @@ function operate(e) {
         var memory = new Memory();
         memory.update();
         var newOp = new CurrentMemory();
+        pressButton(e.id);
         newOp.add(display.read().value, e.textContent, e.id);
+        success = true;
         display.clear();
     }
+    if(success) { pressButton(e.id); }
 }
 function calculate() {
     var display = new Display();
     var status = new Display().read();
+    var success = false;
     if(!status.error && !status.zero) {
         var input1;
         var operation;
@@ -274,15 +303,18 @@ function calculate() {
                 answer = input1 / input2;
                 break;
             }
+            
             if(isNaN(answer) || !isFinite(answer)) {
                 display.error(answer);
                 currentOp.remove();
             } else {
                 currentOp.archive(input2, answer);
                 enterAnswer(answer);
+                success = true;
             }
         }
     }
+    if(success) { pressButton('eq'); }
 }
 
 function enterAnswer(answer){
@@ -309,34 +341,30 @@ function enterAnswer(answer){
         spaceDisplay();
     }
 }
-function closeMemory() {
-    new Memory().close();
-}
-function openMemory() {
-    var memory = new Memory(); memory.update(); memory.open();
-}
+
+function closeMemory() { new Memory().close(); }
+
+function openMemory() { var memory = new Memory(); memory.update(); memory.open(); pressButton('mem'); }
+
+function clearMemory() { new Memory().clear(); }
+
 function recall(answer) {
     var memory = new Memory();
     memory.update();
     enterAnswer(answer.textContent);
     memory.close();
 }
-function clearMemory() {
-    new Memory().clear();
-}
 
 document.addEventListener('keydown', function(e){
     var key = e.key;
-    if (e.which == 13 || key == '=') { calculate(); new Button('eq').final(); }
-    else if (e.which == 8) { enterBs(); new Button('bs').final(); }
+    if (e.which == 13 || key == '=') { calculate(); }
+    else if (e.which == 8) { enterBs(); }
     else if (Number(key) % 1 === 0) {
-        var digit = {}; digit.id = key;
-        enterDigit( digit );
-        new Button(key, 'white').pressed();
+        var digit = {}; digit.id = key; enterDigit( digit );
     }
-    else if (key == 'c') {enterClear(); new Button('c').final(); }
-    else if (key == 'm') {openMemory(); new Button('mem').final(); }
-    else if (key == '.') {enterDec(); new Button('dec').final(); }
+    else if (key == 'c') {enterClear(); }
+    else if (key == 'm') {openMemory(); }
+    else if (key == '.') {enterDec(); }
     else {
         var button = {};
         button.textContent = key;
@@ -344,7 +372,6 @@ document.addEventListener('keydown', function(e){
         if (key == '-') { button.id = 'sb'; }
         if (key == '*') { button.id = 'ml'; }
         if (key == '/') { button.id = 'dv'; }
-        new Button(button.id, 'black').pressed();
-        operate(button);
+        if(button.id) { operate(button); }
     }
 })
